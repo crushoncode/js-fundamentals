@@ -1,4 +1,6 @@
-# Fundamentals 
+The following problems were provided by Coder Academy, and I have worked on the fundamentals as below. 
+
+# JS Fundamentals 
 
 - Problem 1
 
@@ -6,6 +8,25 @@ Write a function called arrayMultiply that takes two numbers, and a callback fun
 Define an array outside of this function (I suggest [1,2,3] to match the output). Because JS scope works differently to Ruby you will be able to use that array within the following function without passing it through as an argument. But please note that it will not be functional programming as such - but in this case if you use map a new array will be created (rather than the original being mutated).
 Call arrayMultiply when called with 2, 2, and also an anonymous callback function that takes the result as an argument, and then multiplies each element in the array by that result. Store the result of this function call in a variable. When you console.log this variable to screen it should produce [ 4, 8, 12 ].
 
+```javascript
+
+function arrayMultiply(num1, num2, fun) {
+    return fun(num1 * num2);
+}
+
+const arrayM = [1, 2, 3];
+
+const result1 = arrayMultiply(2, 2, function(num) {
+
+    for(i = 0; i < arrayM.length; i++) {
+        arrayM[i] = arrayM[i] * num;
+    }
+
+    return arrayM;
+});
+
+console.log(result1);
+```
 - Problem 2
 
 Write a function called arrayMultiplyAgain that takes a number and an array as arguments, and returns each element in the array multiplied by the number. 
