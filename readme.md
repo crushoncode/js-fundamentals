@@ -58,6 +58,24 @@ console.log(result2)
 
 Define a function that takes a callback and provides the same functionality as the .map function inbuilt into ES6. You can do this as a function that extends the array prototype (which takes a callback function as an argument), or more simply as a function that takes an array as an argument, as well as a callback function.
 
+```javascript
+
+function createMap(st_array, fun) {
+      const return_array = [];
+
+      for(i = 0; i < st_array.length; i++) {
+        return_array.push(fun(st_array[i]));
+    }
+
+    return return_array;
+}
+
+const result3 = createMap([1,2,3], x => x * 2);     
+    
+console.log(result3);
+
+```
+
 - Problem 4
 
 *Implement your own version of .filter*

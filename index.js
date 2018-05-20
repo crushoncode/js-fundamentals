@@ -33,3 +33,19 @@ function moreArrayMultiply(num, st_array, fun) {
 const result2 = moreArrayMultiply(2, [1, 2, 3], arrayMultiplyAgain)
 
 console.log(result2)
+
+// Problem 3
+
+function createMap(st_array, fun) {
+    const return_array = [];
+
+    for(i = 0; i < st_array.length; i++) {
+      return_array.push(fun(st_array[i]));
+  }
+
+  return return_array;
+}
+
+const result3 = createMap([1,2,3], x => x * 2);     
+  
+console.log(result3);
