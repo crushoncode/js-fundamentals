@@ -82,6 +82,26 @@ console.log(result3);
 
 Define a function that takes a callback and provides the same functionality as the .filter function inbuilt into es6. You can do this as a function that extends the array prototype (which takes a callback function as an argument), or more simply as a function that takes an array as an argument, as well as a callback function.
 
+```javascript
+
+function createFilter(st_array, fun) {
+    const return_array = [];
+
+    for(i = 0; i < st_array.length; i++) {
+        if (fun(st_array[i])) {
+            return_array.push(st_array[i]);
+        }    
+    }
+    return return_array;
+}
+
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result4 = createFilter(words, word => word.length > 6);
+console.log(result4);
+
+```
+
 - Problem 5
 
 Define an object that has two keys, one called 'buy' and the other called 'sell'. These will have the value of an anonymous function that takes no arguments, and that simply returns a string. The function associated with 'buy' will return "I want to buy!!", and the other returns "I want to get out!!"

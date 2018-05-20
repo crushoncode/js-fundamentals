@@ -49,3 +49,21 @@ function createMap(st_array, fun) {
 const result3 = createMap([1,2,3], x => x * 2);     
   
 console.log(result3);
+
+// Problem 4
+
+function createFilter(st_array, fun) {
+    const return_array = [];
+
+    for(i = 0; i < st_array.length; i++) {
+        if (fun(st_array[i])) {
+            return_array.push(st_array[i]);
+        }    
+    }
+    return return_array;
+}
+
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result4 = createFilter(words, word => word.length > 6);
+console.log(result4);
