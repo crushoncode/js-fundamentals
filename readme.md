@@ -108,5 +108,31 @@ Define an object that has two keys, one called 'buy' and the other called 'sell'
 Define a function called originalFunction that takes two arguments, a number and an object, which you could call 'functionObject'. If the number is divisible by 2 then the function returns the functionObject's 'buy' function, and otherwise returns the 'sell' function.
 // Now call this function with a number and the object that you created as arguments, and store the result in a constant. Now work out how to get the string to display to the screen.
 
+```javascript
 
+const market = {
+    buy: function() {
+        return 'I want to buy!!'; 
+    }, 
+    sell: function() {
+        return 'I want to get out!!';
+    }  
+};
+
+function originalFunction(num, functionObject) {
+        
+    let executeString; 
+
+        if(num % 2 == 0) {
+            executeString = "buy";
+        } else {
+            executeString = "sell";
+        }
+        return functionObject[executeString];
+    }
+
+const result5 = originalFunction(3, market);
+console.log(result5()) 
+
+```
 

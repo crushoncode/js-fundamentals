@@ -67,3 +67,29 @@ const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']
 
 const result4 = createFilter(words, word => word.length > 6);
 console.log(result4);
+
+// Problem 5
+
+const market = {
+    buy: function() {
+        return 'I want to buy!!'; 
+    }, 
+    sell: function() {
+        return 'I want to get out!!';
+    }  
+};
+
+function originalFunction(num, functionObject) {
+        
+    let executeString; 
+
+        if(num % 2 == 0) {
+            executeString = "buy";
+        } else {
+            executeString = "sell";
+        }
+        return functionObject[executeString];
+    }
+
+const result5 = originalFunction(3, market);
+console.log(result5()) 
