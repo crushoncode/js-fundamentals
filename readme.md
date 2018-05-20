@@ -26,6 +26,7 @@ const result1 = arrayMultiply(2, 2, function(num) {
 });
 
 console.log(result1);
+
 ```
 - Problem 2
 
@@ -33,6 +34,24 @@ Write a function called arrayMultiplyAgain that takes a number and an array as a
 Now write a second function called moreArrayMultiply that takes three arguments: a number, an array, and a function: (eg. num, arr, funct). Have this function return the result of these number and array arguments when passed as arguments to a call of arrayMultiplyAgain (which you passed in as an argument).
 Define a variable and in it store the result of the second function when called with 2, [1,2,3], and the first function you created. When you console.log this variable to screen it should produce [ 2, 4, 6 ].
 
+```javascript
+
+function arrayMultiplyAgain(num, st_array) {
+    for(i = 0; i < st_array.length; i++) {
+        st_array[i] = st_array[i] * num;
+    }
+    return st_array;
+}
+
+function moreArrayMultiply(num, st_array, fun) {
+    return fun(num, st_array);
+}
+
+const result2 = moreArrayMultiply(2, [1, 2, 3], arrayMultiplyAgain)
+
+console.log(result2)
+
+```
 - Problem 3
 
 *Implement your own version of .map*
