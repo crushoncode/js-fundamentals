@@ -8,6 +8,9 @@ Write a function called arrayMultiply that takes two numbers, and a callback fun
 Define an array outside of this function (I suggest [1,2,3] to match the output). Because JS scope works differently to Ruby you will be able to use that array within the following function without passing it through as an argument. But please note that it will not be functional programming as such - but in this case if you use map a new array will be created (rather than the original being mutated).
 Call arrayMultiply when called with 2, 2, and also an anonymous callback function that takes the result as an argument, and then multiplies each element in the array by that result. Store the result of this function call in a variable. When you console.log this variable to screen it should produce [ 4, 8, 12 ].
 
+
+* Solution 1)
+
 ```javascript
 
 function arrayMultiply(num1, num2, fun) {
@@ -28,6 +31,27 @@ const result1 = arrayMultiply(2, 2, function(num) {
 console.log(result1);
 
 ```
+* Solution 2)
+
+```javascript
+
+function arrayMultiply(num1, num2, fun) {
+    let res = fun(num1 * num2)
+    return res;
+}
+
+const arrayM = [1, 2, 3];
+
+const result7 = arrayMultiply(2, 2, function(resultNum) {
+
+    arrayNew = arrayM.map( x => x * resultNum)
+    return arrayNew
+});
+
+console.log(result7);
+
+```
+
 - Problem 2
 
 Write a function called arrayMultiplyAgain that takes a number and an array as arguments, and returns each element in the array multiplied by the number. 
@@ -136,3 +160,27 @@ console.log(result5())
 
 ```
 
+
+- Write a ruby function to convert from decimal to binary 
+- Write another ruby function to convert from decimal and hexadecimal
+
+```ruby
+
+def convertor(num, base)
+    calcs = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F","G","H","I"]
+    base_array = []
+    while num > 0
+        if base <= 19
+            x = calcs[num % base]
+            base_array.push(x)
+            num = num / base
+        else
+            "enough to calculate"
+        end
+    end
+        return base_array.reverse.join
+end
+
+puts convertor(782, 2)
+
+```
