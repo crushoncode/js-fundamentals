@@ -1,5 +1,6 @@
-The following problems were provided by Coder Academy, and
-I have worked on the fundamentals as below.
+# Overview
+
+This repository is a growing collection of my solutions to simple JavaScript exercises.
 
 # JS Fundamentals 
 
@@ -209,7 +210,7 @@ puts convertor(782, 2)
 
 ```
 
-# write a function that takes a decimal and returns a string in base 7
+# Write a function that takes a decimal and returns a string in base 7
 
 ```ruby
 
