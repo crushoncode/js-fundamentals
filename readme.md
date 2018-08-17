@@ -2,7 +2,7 @@
 
 This repository is a growing collection of my solutions to simple JavaScript exercises.
 
-# JS Fundamentals 
+# JS Fundamentals
 
 # Problem 1
 
@@ -10,122 +10,126 @@ Write a function called arrayMultiply that takes two numbers, and a callback fun
 Define an array outside of this function (I suggest [1,2,3] to match the output). Because JS scope works differently to Ruby you will be able to use that array within the following function without passing it through as an argument. But please note that it will not be functional programming as such - but in this case if you use map a new array will be created (rather than the original being mutated).
 Call arrayMultiply when called with 2, 2, and also an anonymous callback function that takes the result as an argument, and then multiplies each element in the array by that result. Store the result of this function call in a variable. When you console.log this variable to screen it should produce [ 4, 8, 12 ].
 
-
-* Solution 1
+- Solution 1
 
 ```javascript
+arrayMultiply = (num1, num2, fun) => {
+  return fun(num1 * num2);
+};
 
-function arrayMultiply(num1, num2, fun) {
-    return fun(num1 * num2);
-}
+const arrayN = [1, 2, 3];
 
-const arrayM = [1, 2, 3];
-
-const result1 = arrayMultiply(2, 2, function(num) {
-
-    for(i = 0; i < arrayM.length; i++) {
-        arrayM[i] = arrayM[i] * num;
+const result1 = arrayMultiply(
+  2,
+  2,
+  (fun = (num) => {
+    for (i = 0; i < arrayN.length; i++) {
+      arrayN[i] = arrayN[i] * num;
     }
 
-    return arrayM;
-});
+    return arrayN;
+  })
+);
 
 console.log(result1);
-
 ```
-* Solution 2
+
+- Solution 2
 
 ```javascript
-
-function arrayMultiply(num1, num2, fun) {
-    let res = fun(num1 * num2)
-    return res;
-}
+arrayMultiply = (num1, num2, fun) => {
+  let res = fun(num1 * num2);
+  return res;
+};
 
 const arrayM = [1, 2, 3];
 
-const result7 = arrayMultiply(2, 2, function(resultNum) {
-
-    arrayNew = arrayM.map( x => x * resultNum)
-    return arrayNew
-});
+const result7 = arrayMultiply(
+  2,
+  2,
+  (fun = (resultNum) => {
+    arrayNew = arrayM.map((x) => x * resultNum);
+    return arrayNew;
+  })
+);
 
 console.log(result7);
-
 ```
 
 # Problem 2
 
-Write a function called arrayMultiplyAgain that takes a number and an array as arguments, and returns each element in the array multiplied by the number. 
+Write a function called arrayMultiplyAgain that takes a number and an array as arguments, and returns each element in the array multiplied by the number.
 Now write a second function called moreArrayMultiply that takes three arguments: a number, an array, and a function: (eg. num, arr, funct). Have this function return the result of these number and array arguments when passed as arguments to a call of arrayMultiplyAgain (which you passed in as an argument).
 Define a variable and in it store the result of the second function when called with 2, [1,2,3], and the first function you created. When you console.log this variable to screen it should produce [ 2, 4, 6 ].
 
 ```javascript
+arrayMultiplyAgain = (num, st_array) => {
+  for (i = 0; i < st_array.length; i++) {
+    st_array[i] = st_array[i] * num;
+  }
+  return st_array;
+};
 
-function arrayMultiplyAgain(num, st_array) {
-    for(i = 0; i < st_array.length; i++) {
-        st_array[i] = st_array[i] * num;
-    }
-    return st_array;
-}
+moreArrayMultiply = (num, st_array, fun) => {
+  return fun(num, st_array);
+};
 
-function moreArrayMultiply(num, st_array, fun) {
-    return fun(num, st_array);
-}
+const result2 = moreArrayMultiply(2, [1, 2, 3], arrayMultiplyAgain);
 
-const result2 = moreArrayMultiply(2, [1, 2, 3], arrayMultiplyAgain)
-
-console.log(result2)
-
+console.log(result2);
 ```
+
 # Problem 3
 
-*Implement your own version of .map*
+_Implement your own version of .map_
 
 Define a function that takes a callback and provides the same functionality as the .map function inbuilt into ES6. You can do this as a function that extends the array prototype (which takes a callback function as an argument), or more simply as a function that takes an array as an argument, as well as a callback function.
 
 ```javascript
+createMap = (st_array, fun) => {
+  const return_array = [];
 
-function createMap(st_array, fun) {
-      const return_array = [];
+  for (i = 0; i < st_array.length; i++) {
+    return_array.push(fun(st_array[i]));
+  }
 
-      for(i = 0; i < st_array.length; i++) {
-        return_array.push(fun(st_array[i]));
-    }
+  return return_array;
+};
 
-    return return_array;
-}
+const result3 = createMap([1, 2, 3], (x) => x * 2);
 
-const result3 = createMap([1,2,3], x => x * 2);     
-    
 console.log(result3);
-
 ```
 
 # Problem 4
 
-*Implement your own version of .filter*
+_Implement your own version of .filter_
 
 Define a function that takes a callback and provides the same functionality as the .filter function inbuilt into es6. You can do this as a function that extends the array prototype (which takes a callback function as an argument), or more simply as a function that takes an array as an argument, as well as a callback function.
 
 ```javascript
+createFilter = (st_array, fun) => {
+  const return_array = [];
 
-function createFilter(st_array, fun) {
-    const return_array = [];
-
-    for(i = 0; i < st_array.length; i++) {
-        if (fun(st_array[i])) {
-            return_array.push(st_array[i]);
-        }    
+  for (i = 0; i < st_array.length; i++) {
+    if (fun(st_array[i])) {
+      return_array.push(st_array[i]);
     }
-    return return_array;
-}
+  }
+  return return_array;
+};
 
-const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+const words = [
+  'spray',
+  'limit',
+  'elite',
+  'exuberant',
+  'destruction',
+  'present'
+];
 
-const result4 = createFilter(words, word => word.length > 6);
+const result4 = createFilter(words, (word) => word.length > 6);
 console.log(result4);
-
 ```
 
 # Problem 5
@@ -135,47 +139,43 @@ Define a function called originalFunction that takes two arguments, a number and
 // Now call this function with a number and the object that you created as arguments, and store the result in a constant. Now work out how to get the string to display to the screen.
 
 ```javascript
-
 const market = {
-    buy: function() {
-        return 'I want to buy!!'; 
-    }, 
-    sell: function() {
-        return 'I want to get out!!';
-    }  
+  buy: (fun = () => {
+    return 'I want to buy!!';
+  }),
+  sell: (fun = () => {
+    return 'I want to get out!!';
+  })
 };
 
-function originalFunction(num, functionObject) {
-        
-    let executeString; 
+originalFunction = (num, functionObject) => {
+  let executeString;
 
-        if(num % 2 == 0) {
-            executeString = "buy";
-        } else {
-            executeString = "sell";
-        }
-        return functionObject[executeString];
-    }
+  if (num % 2 == 0) {
+    executeString = 'buy';
+  } else {
+    executeString = 'sell';
+  }
+  return functionObject[executeString];
+};
 
 const result5 = originalFunction(3, market);
-console.log(result5()) 
-
+console.log(result5());
 ```
 
 # Write a ruby function to convert from decimal to binary and from decimal to hexadecimal
 
-* solution 1
+- solution 1
 
 ```ruby
-
 def convert(num, base)
     result = ""
 
     while num != 0 do
         value = num % base + 48
         if value > 57
-            value += 7 
-        end 
+            value += 7
+        end
 
     result += value.chr
     num /= base
@@ -184,13 +184,11 @@ def convert(num, base)
 end
 
 puts convert(61, 9)
-
 ```
 
-* solution 2
+- solution 2
 
 ```ruby
-
 def convertor(num, base)
     calcs = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F","G","H","I"]
     base_array = []
@@ -207,13 +205,11 @@ def convertor(num, base)
 end
 
 puts convertor(782, 2)
-
 ```
 
 # Write a function that takes a decimal and returns a string in base 7
 
 ```ruby
-
 def convert (num, base)
     result = ""
     while num != 0 do
@@ -224,46 +220,63 @@ def convert (num, base)
 end
 
 puts convert(43,7)
-
 ```
 
 # Write a javascript function to convert from decimal to binary and from decimal to hexadecimal
 
 ```javascript
+decToBin = (n1, base) => {
+  var rem;
+  var binArray = [];
 
-function decToBin(n1, base) {
-    var rem; 
-    var binArray = []; 
-
-    while (n1 > 1) {
+  while (n1 > 1) {
     rem = parseInt(n1 % base);
-    n1 = n1 / base;    
+    n1 = n1 / base;
     binArray.push(rem);
-}
-    return convertToString(binArray.reverse());
-}
+  }
+  return convertToString(binArray.reverse());
+};
 
-function decToHexa(n1, base) {
-    var rem; 
-    var binArray = []; 
-    calcs = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F","G","H","I"];
+decToHexa = (n1, base) => {
+  var rem;
+  var binArray = [];
+  calcs = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I'
+  ];
 
-    while (n1 > 1) {
+  while (n1 > 1) {
     rem = parseInt(n1 % base);
-    n1 = n1 / base;    
+    n1 = n1 / base;
     binArray.push(calcs[rem]);
-}
- 
-    return convertToString(binArray.reverse());
-}
+  }
 
-function convertToString(arr) {
-    var returnStr = "";
-    for (i=0; i < arr.length; i++);;;
-    return returnStr;
-}
+  return convertToString(binArray.reverse());
+};
+
+convertToString = (arr) => {
+  var returnStr = '';
+  for (i = 0; i < arr.length; i++);
+  return returnStr;
+};
 
 console.log(decToBin(25, 2));
 console.log(decToHexa(28, 16));
-
 ```
